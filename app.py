@@ -68,17 +68,22 @@ else:
     df_existente = pd.DataFrame(columns=["Data", "Observação", "Mapa Selecionado"])
 
 with st.sidebar:
+    st.image("libras.png", width=200)
     st.title("Escolha o Mapa desejado :")
     mapa_selecionado = st.selectbox("Mapas", ["mapa1", "mapa2", "mapa3"])
     data_hoje = st.date_input("Escolha a data")
-    text = st.text_input("Digite alguma observação relevante")
+    text = st.text_input("Numero do endereço a ser atualizado: ")
+    atualizacao = st.selectbox("Atualização", ["Encontrado","Não_encontrado","Falei com a Família","mudou-se","Inexistente"])
+   
+  
 
     if st.button('Enviar'):
         # Cria um DataFrame com as novas informações
         df_novo = pd.DataFrame({
             "Data": [data_hoje],
-            "Observação": [text],
-            "Mapa Selecionado": [mapa_selecionado]
+            "Numero endereco": [text],
+            "Mapa Selecionado": [mapa_selecionado],
+            "Atualizacao": [atualizacao]
         })
 
         # Concatena os dados existentes com os novos dados
