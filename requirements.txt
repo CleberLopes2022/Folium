@@ -3,5 +3,5 @@ pandas
 folium
 streamlit_folium
 openpyxl
-pysqlite3 
+sqlite3 
 
