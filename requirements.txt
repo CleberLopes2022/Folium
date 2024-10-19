@@ -1,7 +1,10 @@
-streamlit 
+streamlit
 pandas
 folium
 streamlit_folium
 time
 os
 openpyxl
+streamlit_option_menu
+sqlite3
+pages.banco
