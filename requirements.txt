@@ -3,5 +3,5 @@ pandas
 folium
 streamlit_folium
 openpyxl
-sqlite3
+pysqlite3 
 pages.banco
