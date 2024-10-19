@@ -4,4 +4,4 @@ folium
 streamlit_folium
 openpyxl
 pysqlite3 
-pages.banco
+
