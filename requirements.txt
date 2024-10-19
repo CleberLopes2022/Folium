@@ -2,8 +2,6 @@ streamlit
 pandas
 folium
 streamlit_folium
-os
 openpyxl
-streamlit_option_menu
 sqlite3
 pages.banco
