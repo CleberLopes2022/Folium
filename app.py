@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
+from streamlit_option_menu import option_menu
 import time
 import os
 from openpyxl.workbook import Workbook
@@ -58,12 +59,15 @@ if os.path.exists("dados_mapa.xlsx"):
 else:
     df_existente = pd.DataFrame(columns=["Data", "Observação", "Mapa Selecionado"])
 
+st.subheader("Escolha o Mapa desejado:")
+mapa_selecionado = st.number_input("Selecione o número do mapa", min_value=1, step=1, max_value=93)
+
 # Barra lateral para selecionar o número do mapa e informações adicionais
 with st.sidebar:
     st.image("libras.png", width=200)
-    st.title("Escolha o Mapa desejado:")
-    mapa_selecionado = st.number_input("Selecione o número do mapa", min_value=1, step=1, max_value=93)
-    data_hoje = st.date_input("Escolha a data")
+    
+    
+    data_hoje = st.date_input("Escolha a data", format= "DD/MM/YYYY")
     text = st.text_input("Número do endereço a ser atualizado:")
     atualizacao = st.selectbox("Atualização", ["Encontrado", "Não encontrado", "Falei com a Família", "Mudou-se", "Inexistente"])
 
@@ -125,8 +129,8 @@ for endereco in enderecos:
     enderecos_dados.append({
         "Número do Endereço": numero_endereco,
         "Sexo": sexo,
-        "Nome": nome,
-        "Google Maps": f'<a href="{link}" target="_blank">Ir para o Maps</a>'
+        "Endereços": nome,
+        "Google Mapas": f'<a href="{link}" target="_blank">Ir para o Maps</a>'
     })
 
 # Converte a lista de dicionários para um DataFrame
