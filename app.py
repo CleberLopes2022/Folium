@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import st_folium
-from streamlit_option_menu import option_menu
 import time
 import os
 from openpyxl.workbook import Workbook
