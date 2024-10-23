@@ -64,7 +64,7 @@ mapa_selecionado = st.number_input("Selecione o número do mapa", min_value=1, s
 # Barra lateral para selecionar o número do mapa e informações adicionais
 with st.sidebar:
     st.logo(image="Images/libras.png",icon_image="Images/libras.png")
-    st.subheader("Atualizção")
+    st.subheader("Atualização")
     
     data_hoje = st.date_input("Data", format= "DD/MM/YYYY")
     text = st.text_input("Nº do endereço a ser atualizado:")
