@@ -66,8 +66,8 @@ with st.sidebar:
     st.logo(image="Images/libras.png",icon_image="Images/libras.png")
     
     
-    data_hoje = st.date_input("Escolha a data", format= "DD/MM/YYYY")
-    text = st.text_input("Número do endereço a ser atualizado:")
+    data_hoje = st.date_input("Data", format= "DD/MM/YYYY")
+    text = st.text_input("Nº do endereço a ser atualizado:")
     atualizacao = st.selectbox("Atualização", ["Encontrado", "Não encontrado", "Falei com a Família", "Mudou-se", "Inexistente"])
 
     # Buscar e exibir endereços associados ao mapa
