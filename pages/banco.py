@@ -9,6 +9,7 @@ st.title("Mapas de Endereços")
 # Defina a senha correta
 senha_correta = "mapas"
 
+
 # Função para verificar a senha
 def verificar_senha():
     # Solicitar a senha antes de carregar a página
@@ -44,8 +45,8 @@ if verificar_senha():
         conn.commit()
 
     # Função para deletar endereço
-    def deletar_endereco(id_endereco):
-        c.execute("DELETE FROM enderecos WHERE id = ?", (id_endereco,))
+    def deletar_endereco(numero_endereco):
+        c.execute("DELETE FROM enderecos WHERE id = ?", (numero_endereco))
         conn.commit()
 
     # Função para buscar endereços por número do mapa
@@ -86,7 +87,7 @@ if verificar_senha():
     st.subheader("Deletar endereço")
     id_deletar = st.number_input("ID do endereço a ser deletado", min_value=1, step=1)
     if st.button("Deletar Endereço"):
-        deletar_endereco(id_deletar)
+        deletar_endereco(numero_endereco)
         st.success("Endereço deletado com sucesso!")
 
     # Fechar a conexão com o banco de dados

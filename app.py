@@ -63,7 +63,7 @@ mapa_selecionado = st.number_input("Selecione o número do mapa", min_value=1, s
 
 # Barra lateral para selecionar o número do mapa e informações adicionais
 with st.sidebar:
-    st.image("libras.png", width=200)
+    st.logo(image="images/libras.png",icon_image="images/libras.png")
     
     
     data_hoje = st.date_input("Escolha a data", format= "DD/MM/YYYY")
@@ -151,7 +151,6 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
     font-weight: bold;
 }
 
