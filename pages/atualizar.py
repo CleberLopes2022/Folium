@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 
-st.logo(image="images/libras.png", icon_image="images/libras.png")
+st.logo(image="Images/libras.png", icon_image="Images/libras.png")
 
 
 st.title("Atualização dos endereços")
