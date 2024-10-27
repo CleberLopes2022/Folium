@@ -7,7 +7,7 @@ import os
 import sqlite3
 
 
-st.logo(image="images/libras.png", icon_image="images/libras.png")
+st.logo(image="images/libras.png", size="large", icon_image="images/libras.png")
 
 # Define o estilo CSS para os links
 link_style = """
