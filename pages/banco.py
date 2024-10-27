@@ -4,7 +4,7 @@ import folium
 import sqlite3
 
 
-st.logo(image="images/libras.png", icon_image="images/libras.png")
+st.logo(image="Images/libras.png", icon_image="Images/libras.png")
 
     # Interface do usuário
 st.title("Mapas de Endereços")
