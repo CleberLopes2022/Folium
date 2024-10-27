@@ -3,6 +3,9 @@ import pandas as pd
 import folium
 import sqlite3
 
+
+st.logo(image="images/libras.png", icon_image="images/libras.png")
+
     # Interface do usuário
 st.title("Mapas de Endereços")
 
