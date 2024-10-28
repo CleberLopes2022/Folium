@@ -81,26 +81,28 @@ if 0 < mapa_selecionado <= 93:
     # Exibe o mapa interativo no Streamlit
     st_data = st_folium(mapa_interativo, width=725, height=400)
 
-    # Exibe os endereços como links para o Google Maps
-    st.subheader("Endereços no Google Maps")
+st.write("")
+
+# Exibe os endereços como links para o Google Maps
+st.subheader("Endereços no Google Maps")
     
     # Cria uma lista de dicionários para cada endereço, incluindo o link formatado
-    enderecos_dados = []
-    for endereco in enderecos:
-        id_endereco, numero_mapa, numero_endereco, sexo, nome, latitude, longitude = endereco
-        link = f"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}"
-        enderecos_dados.append({
+enderecos_dados = []
+for endereco in enderecos:
+    id_endereco, numero_mapa, numero_endereco, sexo, nome, latitude, longitude = endereco
+    link = f"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}"
+    enderecos_dados.append({
             "Número do Endereço": numero_endereco,
             "Sexo": sexo,
             "Endereços": nome,
             "Google Mapas": f'<a href="{link}" target="_blank">Ir para o Maps</a>'
         })
 
-    # Converte a lista de dicionários para um DataFrame
-    df_enderecos = pd.DataFrame(enderecos_dados)
+# Converte a lista de dicionários para um DataFrame
+df_enderecos = pd.DataFrame(enderecos_dados)
 
     # Define o estilo CSS para melhorar a aparência da tabela
-    table_style = """
+table_style = """
     <style>
     table {
         width: 100%;
@@ -127,5 +129,5 @@ if 0 < mapa_selecionado <= 93:
     """
 
     # Exibe o estilo e a tabela como HTML com links clicáveis
-    st.markdown(table_style, unsafe_allow_html=True)
-    st.markdown(df_enderecos.to_html(escape=False, index=False), unsafe_allow_html=True)
+st.markdown(table_style, unsafe_allow_html=True)
+st.markdown(df_enderecos.to_html(escape=False, index=False), unsafe_allow_html=True)
