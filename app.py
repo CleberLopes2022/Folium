@@ -7,9 +7,14 @@ import os
 import sqlite3
 
 
-st.logo(image="Images/libras.png", size="large", icon_image="Images/libras.png")
+# Configuração do Layout da página
+
+st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
+
+st.logo(image="Images/libras.png", icon_image="Images/libras.png")
 
 # Define o estilo CSS para os links
+
 link_style = """
 <style>
 a {
@@ -22,6 +27,7 @@ a:hover {
 </style>
 """
 st.markdown(link_style, unsafe_allow_html=True)
+
 
 # Conectando ao banco de dados SQLite
 conn = sqlite3.connect('enderecos_mapas.db')
@@ -48,6 +54,7 @@ with st.spinner('Espere um pouco...'):
 
 # Cria um título para o aplicativo
 st.title("Mapas Congregação Ls Progresso")
+st.write("-----")
 
 # Coordenadas iniciais do mapa
 coordenadas_iniciais = [-19.912998, -43.940933]  # Minas Gerais
@@ -80,29 +87,28 @@ if 0 < mapa_selecionado <= 93:
 
     # Exibe o mapa interativo no Streamlit
     st_data = st_folium(mapa_interativo, width=725, height=400)
+    time.sleep(1)
 
-st.write("")
-
-# Exibe os endereços como links para o Google Maps
-st.subheader("Endereços no Google Maps")
+    # Exibe os endereços como links para o Google Maps
+    st.subheader("Endereços no Google Maps")
     
     # Cria uma lista de dicionários para cada endereço, incluindo o link formatado
-enderecos_dados = []
-for endereco in enderecos:
-    id_endereco, numero_mapa, numero_endereco, sexo, nome, latitude, longitude = endereco
-    link = f"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}"
-    enderecos_dados.append({
+    enderecos_dados = []
+    for endereco in enderecos:
+        id_endereco, numero_mapa, numero_endereco, sexo, nome, latitude, longitude = endereco
+        link = f"https://www.google.com/maps/search/?api=1&query={latitude},{longitude}"
+        enderecos_dados.append({
             "Número do Endereço": numero_endereco,
             "Sexo": sexo,
             "Endereços": nome,
             "Google Mapas": f'<a href="{link}" target="_blank">Ir para o Maps</a>'
         })
 
-# Converte a lista de dicionários para um DataFrame
-df_enderecos = pd.DataFrame(enderecos_dados)
+    # Converte a lista de dicionários para um DataFrame
+    df_enderecos = pd.DataFrame(enderecos_dados)
 
     # Define o estilo CSS para melhorar a aparência da tabela
-table_style = """
+    table_style = """
     <style>
     table {
         width: 100%;
@@ -129,5 +135,10 @@ table_style = """
     """
 
     # Exibe o estilo e a tabela como HTML com links clicáveis
-st.markdown(table_style, unsafe_allow_html=True)
-st.markdown(df_enderecos.to_html(escape=False, index=False), unsafe_allow_html=True)
+    st.markdown(table_style, unsafe_allow_html=True)
+    st.markdown(df_enderecos.to_html(escape=False, index=False), unsafe_allow_html=True)
+
+
+
+
+
