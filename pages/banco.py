@@ -3,8 +3,9 @@ import pandas as pd
 import folium
 import sqlite3
 
+st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-st.logo(image="Images/libras.png", icon_image="Images/libras.png")
+st.logo(image="images/libras.png", icon_image="images/libras.png")
 
     # Interface do usuário
 st.title("Mapas de Endereços")
