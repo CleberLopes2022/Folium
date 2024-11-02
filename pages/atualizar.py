@@ -3,8 +3,9 @@ from app import mapa_selecionado
 import pandas as pd
 import os
 
+st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-st.logo(image="Images/libras.png", icon_image="Images/libras.png")
+st.logo(image="images/libras.png", icon_image="images/libras.png")
 
 
 st.title("Atualização dos endereços")
@@ -38,6 +39,10 @@ if st.button('Enviar'):
     df_atualizado.to_excel("dados_mapa.xlsx", index=False)
     st.success("Dados salvos com sucesso!")
 
+
+df = pd.read_excel("dados_mapa.xlsx")
+
+st.dataframe(df.tail(10),use_container_width=True)
 
 df = pd.read_excel("dados_mapa.xlsx")
 
