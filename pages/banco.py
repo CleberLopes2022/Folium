@@ -5,14 +5,14 @@ import sqlite3
 
 st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
+# Exibir logo
 st.logo(image="images/libras.png", icon_image="images/libras.png")
 
-    # Interface do usuário
+# Interface do usuário
 st.title("Mapas de Endereços")
 
 # Defina a senha correta
 senha_correta = "mapas"
-
 
 # Função para verificar a senha
 def verificar_senha():
@@ -44,13 +44,13 @@ if verificar_senha():
 
     # Função para adicionar endereço
     def adicionar_endereco(numero_mapa, numero_endereco, sexo, nome, latitude, longitude):
-        c.execute("INSERT INTO enderecos (numero_mapa, numero_endereco,sexo, nome, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)", 
+        c.execute("INSERT INTO enderecos (numero_mapa, numero_endereco, sexo, nome, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)", 
                   (numero_mapa, numero_endereco, sexo, nome, latitude, longitude))
         conn.commit()
 
     # Função para deletar endereço
-    def deletar_endereco(numero_endereco):
-        c.execute("DELETE FROM enderecos WHERE id = ?", (numero_endereco))
+    def deletar_endereco(id):
+        c.execute("DELETE FROM enderecos WHERE id = ?", (id,))
         conn.commit()
 
     # Função para buscar endereços por número do mapa
@@ -58,9 +58,8 @@ if verificar_senha():
         c.execute("SELECT * FROM enderecos WHERE numero_mapa = ?", (numero_mapa,))
         return c.fetchall()
 
-
     # Seleção do número do mapa
-    numero_mapa = st.number_input("Selecione o número do mapa", min_value=1, step=1, max_value=93)
+    numero_mapa = st.number_input("Selecione o número do mapa", min_value=1, step=1)
 
     # Buscar e exibir endereços associados ao mapa
     enderecos = buscar_enderecos_por_mapa(numero_mapa)
@@ -69,7 +68,7 @@ if verificar_senha():
         st.subheader(f"Endereços associados ao Mapa {numero_mapa}")
         for endereco in enderecos:
             id_endereco, numero_mapa, numero_endereco, sexo, nome, latitude, longitude = endereco
-            st.markdown(f"[{nome}]({f'https://www.google.com/maps/search/?api=1&query={latitude},{longitude}'})")
+            st.markdown(f"[{nome}](https://www.google.com/maps/search/?api=1&query={latitude},{longitude})")
     else:
         st.write(f"Não há endereços cadastrados para o Mapa {numero_mapa}")
 
@@ -77,7 +76,7 @@ if verificar_senha():
     st.subheader("Adicionar novo endereço")
     with st.form(key="adicionar_endereco"):
         numero_endereco = st.text_input("Numero do endereço")
-        sexo = st.text_input("Sexo (M/F/C)")
+        sexo = st.text_input("Sexo (H/M/C)")
         nome = st.text_input("Nome do endereço")
         latitude = st.number_input("Latitude", format="%.6f")
         longitude = st.number_input("Longitude", format="%.6f")
@@ -91,7 +90,7 @@ if verificar_senha():
     st.subheader("Deletar endereço")
     id_deletar = st.number_input("ID do endereço a ser deletado", min_value=1, step=1)
     if st.button("Deletar Endereço"):
-        deletar_endereco(numero_endereco)
+        deletar_endereco(id_deletar)
         st.success("Endereço deletado com sucesso!")
 
     # Fechar a conexão com o banco de dados
