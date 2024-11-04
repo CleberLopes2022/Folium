@@ -44,6 +44,4 @@ df = pd.read_excel("dados_mapa.xlsx")
 
 st.dataframe(df.tail(10),use_container_width=True)
 
-df = pd.read_excel("dados_mapa.xlsx")
 
-st.dataframe(df.tail(10))
