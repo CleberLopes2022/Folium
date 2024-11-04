@@ -5,7 +5,7 @@ import os
 
 st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-st.logo(image="images/libras.png", icon_image="images/libras.png")
+st.logo(Image="images/libras.png", icon_image="Images/libras.png")
 
 
 st.title("Atualização dos endereços")
