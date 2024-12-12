@@ -5,11 +5,9 @@ import sqlite3
 
 st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-# Exibir logo
-st.image("images/libras.png")
 
 # Interface do usuário
-st.title("Mapas de Endereços")
+st.logo(image="images/libras.png", icon_image="images/libras.png")
 
 # Defina a senha correta
 senha_correta = "mapas"
