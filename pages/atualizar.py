@@ -5,7 +5,7 @@ import os
 
 st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-st.logo(image="Images/libras.png", icon_image="Images/libras.png")
+st.logo(image="images/libras.png", icon_image="images/libras.png")
 
 
 st.title("Atualização dos endereços")
@@ -13,7 +13,7 @@ st.title("Atualização dos endereços")
 
 data_hoje = st.date_input("Escolha a data", format="DD/MM/YYYY")
 mapa_selecionado1 = st.number_input("Selecione o número do mapa", min_value=0, step=1, max_value=93)
-text = st.number_input("Numero do Endereço: ", min_value=0, step=1, max_value=10)
+text = st.number_input("Numero do Endereço: ", min_value=0, step=1, max_value=340)
 atualizacao = st.selectbox("Atualização", ["Encontrado", "Não encontrado", "Falei com a Família", "Mudou-se", "Inexistente"])
 
 
@@ -43,5 +43,3 @@ if st.button('Enviar'):
 df = pd.read_excel("dados_mapa.xlsx")
 
 st.dataframe(df.tail(10),use_container_width=True)
-
-

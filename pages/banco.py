@@ -5,11 +5,9 @@ import sqlite3
 
 st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wide")
 
-# Exibir logo
-st.logo(image="Images/libras.png", icon_image="Images/libras.png")
 
 # Interface do usuário
-st.title("Mapas de Endereços")
+st.logo(image="images/libras.png", icon_image="images/libras.png")
 
 # Defina a senha correta
 senha_correta = "mapas"
@@ -45,12 +43,18 @@ if verificar_senha():
     # Função para adicionar endereço
     def adicionar_endereco(numero_mapa, numero_endereco, sexo, nome, latitude, longitude):
         c.execute("INSERT INTO enderecos (numero_mapa, numero_endereco, sexo, nome, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?)", 
-                  (numero_mapa, numero_endereco, sexo, nome, latitude, longitude))
+                  (numero_mapa, numero_endereco, sexo, nome, (latitude), (longitude)))
         conn.commit()
 
     # Função para deletar endereço
     def deletar_endereco(id):
         c.execute("DELETE FROM enderecos WHERE id = ?", (id,))
+        conn.commit()
+
+    # Função para atualizar endereço
+    def atualizar_endereco(id, numero_mapa, numero_endereco, sexo, nome, latitude, longitude):
+        c.execute("UPDATE enderecos SET numero_mapa = ?, numero_endereco = ?, sexo = ?, nome = ?, latitude = ?, longitude = ? WHERE id = ?", 
+                  (numero_mapa, numero_endereco, sexo, nome, (latitude), (longitude), id))
         conn.commit()
 
     # Função para buscar endereços por número do mapa
@@ -78,8 +82,8 @@ if verificar_senha():
         numero_endereco = st.text_input("Numero do endereço")
         sexo = st.text_input("Sexo (H/M/C)")
         nome = st.text_input("Nome do endereço")
-        latitude = st.number_input("Latitude", format="%.6f")
-        longitude = st.number_input("Longitude", format="%.6f")
+        latitude = st.number_input("Latitude", format="%.8f")
+        longitude = st.number_input("Longitude", format="%.8f")
         submit_button = st.form_submit_button(label="Adicionar Endereço")
 
         if submit_button:
@@ -93,5 +97,21 @@ if verificar_senha():
         deletar_endereco(id_deletar)
         st.success("Endereço deletado com sucesso!")
 
+    # Atualizar endereço
+    st.subheader("Atualizar endereço")
+    id_atualizar = st.number_input("ID do endereço a ser atualizado", min_value=1, step=1)
+    with st.form(key="atualizar_endereco"):
+        numero_endereco = st.text_input("Numero do endereço", value="")
+        sexo = st.text_input("Sexo (H/M/C)", value="")
+        nome = st.text_input("Nome do endereço", value="")
+        latitude = st.number_input("Latitude", format="%.8f")
+        longitude = st.number_input("Longitude", format="%.8f")
+        submit_button = st.form_submit_button(label="Atualizar Endereço")
+
+        if submit_button:
+            atualizar_endereco(id_atualizar, numero_mapa, numero_endereco, sexo, nome, latitude, longitude)
+            st.success("Endereço atualizado com sucesso!")
+
     # Fechar a conexão com o banco de dados
     conn.close()
+
