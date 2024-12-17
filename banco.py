@@ -82,8 +82,8 @@ if verificar_senha():
         numero_endereco = st.text_input("Numero do endereço")
         sexo = st.text_input("Sexo (H/M/C)")
         nome = st.text_input("Nome do endereço")
-        latitude = st.number_input("Latitude", format="%.7f")
-        longitude = st.number_input("Longitude", format="%.7f")
+        latitude = st.number_input("Latitude", format="%.8f")
+        longitude = st.number_input("Longitude", format="%.8f")
         submit_button = st.form_submit_button(label="Adicionar Endereço")
 
         if submit_button:
@@ -104,8 +104,8 @@ if verificar_senha():
         numero_endereco = st.text_input("Numero do endereço", value="")
         sexo = st.text_input("Sexo (H/M/C)", value="")
         nome = st.text_input("Nome do endereço", value="")
-        latitude = st.number_input("Latitude", format="%.7f")
-        longitude = st.number_input("Longitude", format="%.7f")
+        latitude = st.number_input("Latitude", format="%.8f")
+        longitude = st.number_input("Longitude", format="%.8f")
         submit_button = st.form_submit_button(label="Atualizar Endereço")
 
         if submit_button:
