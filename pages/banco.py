@@ -7,7 +7,7 @@ st.set_page_config(page_title="Ls Maps", page_icon="Images/ls2.png", layout="wid
 
 
 # Interface do usuário
-st.logo(image="images/libras.png", icon_image="images/libras.png")
+st.logo(image="Images/libras.png", icon_image="Images/libras.png")
 
 # Defina a senha correta
 senha_correta = "mapas"
